@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orleans.CodeGenerator</name>
+    </assembly>
+    <members>
+        <member name="F:Orleans.CodeGenerator.Analysis.CompilationAnalyzer.assembliesWithForcedSerializability">
+            <summary>
+            Assemblies whose declared types are all considered serializable.
+            </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Analysis.CompilationAnalyzer.knownBaseTypes">
+            <summary>
+            Types whose sub-types are all considered serializable.
+            </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Analysis.CompilationAnalyzer.dependencyTypes">
+            <summary>
+            Types which were observed in a grain interface.
+            </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Analysis.CompilationAnalyzer.ReferencedAssemblies">
+            <summary>
+            All assemblies referenced by this compilation.
+            </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Analysis.CompilationAnalyzer.AssembliesExcludedFromCodeGeneration">
+            <summary>
+            Assemblies which should be excluded from code generation (eg, because they already contain generated code).
+            </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Analysis.CompilationAnalyzer.AssembliesExcludedFromMetadataGeneration">
+            <summary>
+            Assemblies which should be excluded from metadata generation.
+            </summary>
+        </member>
+        <member name="T:Orleans.CodeGenerator.CodeGenerationException">
+            <summary>
+            Signifies an error that occurred during code generation.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.CodeGeneratorOptions.DebuggerStepThrough">
+            <summary>
+            Whether or not to add <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/> to generated code.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Compatibility.OrleansLegacyCompat.IsGrainInterface(Orleans.CodeGenerator.WellKnownTypes,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns true if the provided type is a grain interface.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Compatibility.OrleansLegacyCompat.IsGrainClass(Orleans.CodeGenerator.WellKnownTypes,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns true if the provided type is a grain implementation.
+            </summary>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Compatibility.RoslynTypeNameFormatter">
+            <summary>
+            Utility methods for formatting <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/> instances in a way which can be later parsed by <see cref="M:System.Type.GetType(System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Compatibility.RoslynTypeNameFormatter.Format(Microsoft.CodeAnalysis.ITypeSymbol,Orleans.CodeGenerator.Compatibility.RoslynTypeNameFormatter.Style)">
+            <summary>
+            Returns a <see cref="T:System.String"/> form of <paramref name="type"/> which can be parsed by <see cref="M:System.Type.GetType(System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainInterfaceCommon.GenerateGrainInterfaceAndMethodSwitch(Orleans.CodeGenerator.WellKnownTypes,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.Func{Microsoft.CodeAnalysis.IMethodSymbol,Microsoft.CodeAnalysis.CSharp.Syntax.StatementSyntax[]},System.Func{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.CSharp.Syntax.SwitchStatementSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.BlockSyntax})">
+            <summary>
+            Generates switch cases for the provided grain type.
+            </summary>
+            <param name="types" />
+            <param name="grainType" />
+            <param name="methodIdArgument">
+            The method id argument, which is used to select the correct switch label.
+            </param>
+            <param name="generateMethodHandler">
+            The function used to generate switch block statements for each method.
+            </param>
+            <param name="composeInterfaceBlock">
+            The function used to compose method switch blocks for each interface.
+            </param>
+            <returns>
+            The switch cases for the provided grain type.
+            </returns>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator">
+            <summary>
+            Generates IGrainMethodInvoker implementations for grains.
+            </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.nextId">
+            <summary>
+            The next id used for generated code disambiguation purposes.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GetGeneratedClassName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns the name of the generated class for the provided type.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenerateClass(Orleans.CodeGenerator.Model.GrainInterfaceDescription)">
+            <summary>
+            Generates the class for the provided grain types.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenerateInvokeMethod(Orleans.CodeGenerator.WellKnownTypes,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.Dictionary{Microsoft.CodeAnalysis.IMethodSymbol,Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenericInvokerField})">
+            <summary>
+            Generates syntax for the IGrainMethodInvoker.Invoke method.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenerateExtensionInvokeMethod(Orleans.CodeGenerator.WellKnownTypes,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.Dictionary{Microsoft.CodeAnalysis.IMethodSymbol,Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenericInvokerField})">
+            <summary>
+            Generates syntax for the IGrainExtensionMethodInvoker.Invoke method.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenerateInvokeMethod(Orleans.CodeGenerator.WellKnownTypes,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Generic.Dictionary{Microsoft.CodeAnalysis.IMethodSymbol,Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenericInvokerField})">
+            <summary>
+            Generates syntax for an invoke method.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenerateInvokeForMethod(Orleans.CodeGenerator.WellKnownTypes,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.IMethodSymbol,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.Collections.Generic.Dictionary{Microsoft.CodeAnalysis.IMethodSymbol,Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenericInvokerField})">
+            <summary>
+            Generates syntax to invoke a method on a grain.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenerateGenericInvokerFields(Orleans.CodeGenerator.WellKnownTypes,System.Collections.Generic.List{Orleans.CodeGenerator.Model.GrainMethodDescription})">
+            <summary>
+            Generates GenericMethodInvoker fields for the generic methods in <paramref name="methodDescriptions"/>.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainMethodInvokerGenerator.GenerateGenericInvokerField(Microsoft.CodeAnalysis.IMethodSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Generates a GenericMethodInvoker field for the provided generic method.
+            </summary>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Generators.GrainReferenceGenerator">
+            <summary>
+            Generates GrainReference implementations for grains.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainReferenceGenerator.GetGeneratedClassName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns the name of the generated class for the provided type.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainReferenceGenerator.GenerateClass(Orleans.CodeGenerator.Model.GrainInterfaceDescription)">
+            <summary>
+            Generates the class for the provided grain types.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainReferenceGenerator.GenerateConstructors(System.String)">
+            <summary>
+            Generates constructors.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainReferenceGenerator.GenerateInvokeMethods(Orleans.CodeGenerator.Model.GrainInterfaceDescription)">
+            <summary>
+            Generates invoker methods.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.GrainReferenceGenerator.GetInvokeOptions(Microsoft.CodeAnalysis.IMethodSymbol)">
+            <summary>
+            Returns syntax for the options argument to GrainReference.InvokeMethodAsync{T} and GrainReference.InvokeOneWayMethod.
+            </summary>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Generators.SerializerGenerator">
+             <summary>
+             Code generator which generates serializers.
+             Sample of generated serializer:
+             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "2.0.0.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof(global::MyType))]
+             internal sealed class OrleansCodeGenUnitTests_GrainInterfaces_MyTypeSerializer
+             {
+                private readonly global::System.Func&lt;global::MyType, global::System.Int32&gt; getField0;
+                private readonly global::System.Action&lt;global::MyType, global::System.Int32&gt; setField0;
+                public OrleansCodeGenUnitTests_GrainInterfaces_MyTypeSerializer(global::Orleans.Serialization.IFieldUtils fieldUtils)
+                {
+                    [...]
+                }
+                [global::Orleans.CodeGeneration.CopierMethodAttribute]
+                public global::System.Object DeepCopier(global::System.Object original, global::Orleans.Serialization.ICopyContext context)
+                {
+                        [...]
+                }
+                [global::Orleans.CodeGeneration.SerializerMethodAttribute]
+                public void Serializer(global::System.Object untypedInput, global::Orleans.Serialization.ISerializationContext context, global::System.Type expected)
+                {
+                        [...]
+                }
+                [global::Orleans.CodeGeneration.DeserializerMethodAttribute]
+                public global::System.Object Deserializer(global::System.Type expected, global::Orleans.Serialization.IDeserializationContext context)
+                {
+                        [...]
+                }
+            }
+             </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Generators.SerializerGenerator.ClassSuffix">
+            <summary>
+            The suffix appended to the name of generated classes.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GetGeneratedClassName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns the name of the generated class for the provided type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The name of the generated class for the provided type.</returns>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GenerateClass(Microsoft.CodeAnalysis.SemanticModel,Orleans.CodeGenerator.Model.SerializerTypeDescription,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Generates the non serializer class for the provided grain types.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GenerateDeserializerMethod(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember},Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Returns syntax for the deserializer method.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GenerateDeepCopierMethod(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember},Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Returns syntax for the deep copy method.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GenerateFields(System.Collections.Generic.List{Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember})">
+            <summary>
+            Returns syntax for the fields of the serializer class.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GetObjectCreationExpressionSyntax(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Returns syntax for initializing a new instance of the provided type.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GetEmptyConstructor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Return the default constructor on <paramref name="type"/> if found or null if not found.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.GetFields(Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Returns a sorted list of the fields of the provided type.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.ShouldSerializeField(Microsoft.CodeAnalysis.IFieldSymbol)">
+            <summary>
+            Returns <see langowrd="true"/> if the provided field should be serialized, <see langword="false"/> otherwise.
+            </summary>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember">
+            <summary>
+            Represents a field.
+            </summary>
+        </member>
+        <member name="F:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.ordinal">
+            <summary>
+            The ordinal assigned to this field.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.Field">
+            <summary>
+            Gets the underlying <see cref="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.Field"/> instance.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.SafeType">
+            <summary>
+            Gets a usable representation of the field type.
+            </summary>
+            <remarks>
+            If the field is of type 'dynamic', we represent it as 'object' because 'dynamic' cannot appear in typeof expressions.
+            </remarks>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.InfoFieldName">
+            <summary>
+            Gets the name of the field info field.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.GetterFieldName">
+            <summary>
+            Gets the name of the getter field.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.SetterFieldName">
+            <summary>
+            Gets the name of the setter field.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.IsGettableProperty">
+            <summary>
+            Gets a value indicating whether or not this field represents a property with an accessible, non-obsolete getter. 
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.IsSettableProperty">
+            <summary>
+            Gets a value indicating whether or not this field represents a property with an accessible, non-obsolete setter. 
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.Type">
+            <summary>
+            Gets syntax representing the type of this field.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.Property">
+            <summary>
+            Gets the <see cref="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.Property"/> which this field is the backing property for, or
+            <see langword="null" /> if this is not the backing field of an auto-property.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.IsObsolete">
+            <summary>
+            Gets a value indicating whether or not this field is obsolete.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.GetGetter(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.Boolean)">
+            <summary>
+            Returns syntax for retrieving the value of this field, deep copying it if necessary.
+            </summary>
+            <param name="instance">The instance of the containing type.</param>
+            <param name="serializationContextExpression">The expression used to retrieve the serialization context.</param>
+            <param name="forceAvoidCopy">Whether or not to ensure that no copy of the field is made.</param>
+            <returns>Syntax for retrieving the value of this field.</returns>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.GetSetter(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Returns syntax for setting the value of this field.
+            </summary>
+            <param name="instance">The instance of the containing type.</param>
+            <param name="value">Syntax for the new value.</param>
+            <returns>Syntax for setting the value of this field.</returns>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.GetValueExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Returns syntax for retrieving the value of this field.
+            </summary>
+            <param name="instance">The instance of the containing type.</param>
+            <returns>Syntax for retrieving the value of this field.</returns>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.Comparer">
+            <summary>
+            A comparer for <see cref="T:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember"/> which compares by name.
+            </summary>
+        </member>
+        <member name="P:Orleans.CodeGenerator.Generators.SerializerGenerator.FieldInfoMember.Comparer.Instance">
+            <summary>
+            Gets the singleton instance of this class.
+            </summary>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Utilities.LiteralExtensions">
+            <summary>
+            Extensions to the generate syntax for literals.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Utilities.LiteralExtensions.ToLiteralExpression(System.String)">
+            <summary>
+            Returns the provided string as a literal expression.
+            </summary>
+        </member>
+        <member name="M:Orleans.CodeGenerator.Utilities.SymbolExtensions.GetAttributes(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData[]@)">
+            <summary>
+            Gets all attributes which are assignable to the specified attribute type.
+            </summary>
+        </member>
+        <member name="T:Orleans.CodeGenerator.Utilities.SymbolSyntaxExtensions">
+            <summary>
+            Extensions for syntax types.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainInterfaces", "GrainInterfaces\GrainInterfaces.csproj", "{3D756A72-9E1B-4C1A-BCA8-0CCCC772CDAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grains", "Grains\Grains.csproj", "{DB80287B-23ED-4520-8A88-7E1B3ADFF45A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silo", "Silo\Silo.csproj", "{14A2F09B-AB26-45F9-B47A-CE1ADCC9A1F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D756A72-9E1B-4C1A-BCA8-0CCCC772CDAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D756A72-9E1B-4C1A-BCA8-0CCCC772CDAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D756A72-9E1B-4C1A-BCA8-0CCCC772CDAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D756A72-9E1B-4C1A-BCA8-0CCCC772CDAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB80287B-23ED-4520-8A88-7E1B3ADFF45A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB80287B-23ED-4520-8A88-7E1B3ADFF45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB80287B-23ED-4520-8A88-7E1B3ADFF45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB80287B-23ED-4520-8A88-7E1B3ADFF45A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A2F09B-AB26-45F9-B47A-CE1ADCC9A1F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A2F09B-AB26-45F9-B47A-CE1ADCC9A1F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A2F09B-AB26-45F9-B47A-CE1ADCC9A1F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A2F09B-AB26-45F9-B47A-CE1ADCC9A1F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {926AFC57-AE8A-4B5A-B7EE-39635E96F565}
+	EndGlobalSection
+EndGlobal
