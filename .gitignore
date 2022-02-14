@@ -1,0 +1,12 @@
+/Client/Client/bin
+/Client/Client/obj
+/OrleansDemo/Silo/bin
+/OrleansDemo/Silo/obj
+/OrleansDemo/Grains/obj
+/OrleansDemo/Grains/bin
+/OrleansDemo/GrainInterfaces/bin
+/OrleansDemo/GrainInterfaces/obj
+/OrleansDemo/packages
+/Client/packages
+/Client/.vs
+/OrleansDemo/.vs
